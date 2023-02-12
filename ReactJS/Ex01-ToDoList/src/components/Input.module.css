@@ -1,0 +1,42 @@
+.InputWrapper {
+    display: flex;
+    width: 46rem;
+    top: 11rem;
+    flex-direction: row;
+    gap:0.5rem;
+    position: absolute;
+}
+.FormText {
+    width: 40rem;
+    height: 3.375rem;
+    flex: 1;
+    background-color: var(--gray-500);
+    color: var(--gray-300);
+    resize: none;
+    padding: 1rem;
+    border-radius:0.5rem;
+    border-color: var(--gray-700);
+    overflow: hidden;
+}
+
+.FormText :focus {
+    border: 1px solid var(--purple-dark);
+}
+
+.InputWrapper button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--blue-dark);
+    color: var(--gray-100);
+    width: 5.5rem;
+    height: 3.25rem;
+    border-color: transparent;
+    border-radius:0.5rem;
+    text-justify: inherit;
+}
+.InputWrapper button:hover {
+    background-color: var(--blue);
+}

@@ -1,0 +1,298 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Atlas",
+    "description": "Essa é uma documentação sobre a Altas API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "matheus.felipe337@gmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["users"],
+        "summary": "Cadastrar um usuário",
+        "description": "Cadastrar um novo usuário no repositório",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "User Name",
+                  "description": "user@email.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Crated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "name": "User Name",
+                    "description": "user@email.com"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "This e-mail already exists"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["users"],
+        "summary": "Listar usuários",
+        "description": "Permite que um usuário administrador obtenha a lista de usuários da aplicação",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user_id",
+            "description": "ID de um usuário existente e administrador",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": "7878f11a-0498-4a0a-b5e2-a0b007e3356c",
+                      "created_at": "2022-12-18T00:27:13.452Z",
+                      "admin": true,
+                      "updated_at": "2022-12-18T00:27:22.498Z",
+                      "name": "Matheus",
+                      "email": "josias.felipe337@gmail.com"
+                    },
+                    {
+                      "id": "7878f11a-0498-4a0a-b5e2-a0b007e3356c",
+                      "created_at": "2022-12-18T00:27:13.452Z",
+                      "admin": true,
+                      "updated_at": "2022-12-18T00:27:22.498Z",
+                      "name": "Matheus",
+                      "email": "josias.felipe337@gmail.com"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "You need to be an administrator to list all users"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Listar um usuário especifico",
+        "description": "Lista um usuário do repositório",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "ID de um usuário existente",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "name": "User Name",
+                "description": "user@email.com"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "7878f11a-0498-4a0a-b5e2-a0b007e3356c",
+                    "created_at": "2022-12-18T00:27:13.452Z",
+                    "admin": true,
+                    "updated_at": "2022-12-18T00:27:22.498Z",
+                    "name": "Matheus",
+                    "email": "josias.felipe337@gmail.com"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encrontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User Not Found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/:user_id/admin": {
+      "patch": {
+        "tags": ["users"],
+        "summary": "Torna um usuário qualquer administrador",
+        "description": "Muda o status de admin do usuário no repositório",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "ID de um usuário existente",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "7878f11a-0498-4a0a-b5e2-a0b007e3356c",
+                    "created_at": "2022-12-18T00:27:13.452Z",
+                    "admin": true,
+                    "updated_at": "2022-12-18T00:27:22.498Z",
+                    "name": "Matheus",
+                    "email": "josias.felipe337@gmail.com"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encrontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User Not Found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

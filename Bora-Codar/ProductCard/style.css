@@ -1,0 +1,76 @@
+:root {
+  --light-purple: #D9CDF7;
+  --dark-purple: #271A45
+}
+
+body{
+  background-color: var(--light-purple);
+  display: flex;
+  font-family: 'Crimson Pro', serif;
+  justify-content: center;
+}
+.productImage{
+  position: relative;
+}
+
+.switch{
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  top: 0;
+  left: 50%;
+  z-index: 10;
+}
+
+.ProductCard{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  gap: 0.8125rem;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.ProductInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+}
+
+.AddProductButton{
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  background-color: none;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background-color: var(--light-purple);
+  line-height: 1rem;
+  width: fit-content;
+}
+
+.AddProductButton:hover{
+  background-color: var(--dark-purple);
+  color: #eee;
+}
+
+.Title{
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.price{
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.code {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}

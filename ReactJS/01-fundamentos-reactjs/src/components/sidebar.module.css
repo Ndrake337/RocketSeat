@@ -1,0 +1,68 @@
+.sidebar{
+    background: var(--gray-800);
+    border-radius: 8px;
+    /* elementos dentro da side bar ocupam o tamanho da sidebar e mantém suas propriedades tal como border-radius */
+    overflow: hidden;
+}
+
+.cover{
+    width: 100%;
+    height: 72px;
+    /* faz com que o css não distorça a imagem cortando a imagem ao invés de comprimir, cortando elementos da imagem com intuito de mostrar o centro da mesma  */
+    object-fit: cover;
+}
+
+.profile{
+    display: flex;
+    /* Setando a direção do flex para coluna, assim fazendo com que os elementos da imagem fiquem um abaixo do outro */
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: calc(0px - 1.5rem - 6px);
+}
+
+
+
+.profile strong{
+    margin-top: 1rem;
+    color: var(--gray-100);
+    line-height: 1.6;
+}
+
+.profile span{
+    font-size: 0.875rem;
+    color: var(--gray-400);
+    line-height: 1.6;
+}
+
+.sidebar footer {
+    border-top: 1px solid var(--gray-600);
+    margin-top: 1.5rem;
+    padding: 1.5rem 2rem 2rem;
+}
+
+.sidebar footer a {
+    /* valores vindos do figma: https://www.figma.com/file/vTt1C26a1fKNpC7AYepynf/Ignite-Feed-(Community)?node-id=1%3A35 */
+    background: transparent;
+    color: var(--green-500);
+    border: 1px solid var(--green-500);
+    border-radius: 8px;
+    height: 50px;
+    padding: 0 1.5rem;
+    font-weight: bold;
+    /* com o display block, automaticamente width: 100%; */
+    display: block;
+    text-decoration: none;
+    /* Alinhando conteúdo do botão totalmente ao centro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.3rem;
+    transition: color 0.1s, background-color 0.1s;
+}
+
+.sidebar footer a:hover{
+    background-color: var(--green-500);
+    color: var(--white);
+}

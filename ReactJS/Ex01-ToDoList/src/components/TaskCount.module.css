@@ -1,0 +1,51 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5.5rem;
+    /* overflow: auto; */
+    /* position: inherit ; */
+}
+
+.TaskStatus{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /* gap: 30rem; */
+    align-self: stretch;
+    width: 46rem;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.TaskStatus strong {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 0.5rem;
+
+}
+
+.TaskStatus span{
+    background-color: var(--gray-400);
+    border-radius: 999px;
+    padding: 0.125rem 0.5rem;
+    gap: 10px;
+    color: var(--white);
+
+}
+
+.created{
+    color: var(--blue);
+}
+
+.done{
+    color: var(--purple);
+}

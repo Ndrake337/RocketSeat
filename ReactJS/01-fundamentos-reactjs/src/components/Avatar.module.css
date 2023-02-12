@@ -1,0 +1,15 @@
+.avatar {
+    /* Podemos usar o box-sizing: initial; para que todo o conteúdo não seja espremido ou podemos usar cálculos*/
+    width: 3rem;
+    height:3rem;
+    border-radius: 8px;
+}
+
+.avatarWithBorder {
+    /* Podemos usar o box-sizing: initial; para que todo o conteúdo não seja espremido ou podemos usar cálculos*/
+    width: calc( 3rem + 12px);
+    height: calc( 3rem + 12px);
+    border-radius: 8px;
+    border: 4px solid var(--gray-800);
+    outline: 2px solid var(--green-500);
+}
