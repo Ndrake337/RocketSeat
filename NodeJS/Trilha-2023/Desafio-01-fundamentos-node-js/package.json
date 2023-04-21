@@ -1,0 +1,11 @@
+{
+  "name": "desafio-01-fundamentos-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
