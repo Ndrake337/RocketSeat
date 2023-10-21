@@ -1,8 +1,9 @@
 {
-  "name": "desafio-01-fundamentos-node",
+  "name": "desafio-01-fundamentos-node-js",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "node --watch src/server.js"
   },
