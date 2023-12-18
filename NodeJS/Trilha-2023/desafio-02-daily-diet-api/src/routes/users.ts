@@ -8,10 +8,8 @@ export async function usersRoute(app: FastifyInstance) {
     const createUserSchema = z.object({
       name: z.string(),
     });
-    console.log("Não Passou");
 
     let sessionId = request.cookies.sessionId;
-    console.log("passou");
 
     if (!sessionId) {
       sessionId = randomUUID();

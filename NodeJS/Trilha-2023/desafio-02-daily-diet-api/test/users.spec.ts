@@ -2,7 +2,7 @@ import { afterAll, beforeAll, beforeEach, describe, it } from "vitest";
 import { app } from "../src/app";
 import { execSync } from "node:child_process";
 import request from "supertest";
-describe("Users route", () => {
+describe("Users Route Test Group", () => {
   beforeAll(async () => {
     await app.ready();
   });
@@ -20,7 +20,7 @@ describe("Users route", () => {
     const response = await request(app.server)
       .post("/users")
       .send({
-        name: "Usuario Teste",
+        name: "Usuário Teste",
       })
       .expect(201);
   });

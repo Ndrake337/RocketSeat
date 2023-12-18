@@ -4,9 +4,9 @@ export async function checkSessionIdExists(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  const session_id = request.cookies.sessionId;
+  const sessionId = request.cookies.sessionId;
 
-  if (!session_id) {
+  if (!sessionId) {
     return reply.status(401).send({
       error: "Unauthorized",
     });
