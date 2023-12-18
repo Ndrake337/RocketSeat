@@ -36,4 +36,29 @@ describe("Meals Route Test Group", () => {
       })
       .expect(201);
   });
+
+  it("should be able to list all meals from a specific user", async () => {
+    const createUserResponse = await request(app.server)
+      .post("/users")
+      .send({ name: "Usuário teste" })
+      .expect(201);
+
+    const cookies = createUserResponse.get("Set-Cookie");
+
+    await request(app.server)
+      .post("/meals")
+      .set("Cookie", cookies)
+      .send({
+        name: "Test Meal",
+        description: "This is a meal bean send to test the meals route",
+        mealTime: "2023-12-11T14:20:35Z",
+        isOnDiet: true,
+      })
+      .expect(201);
+
+    const getMealsResponse = await request(app.server)
+      .get("/meals")
+      .set("Cookie", cookies)
+      .expect(200);
+  });
 });

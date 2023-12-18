@@ -47,7 +47,24 @@ export async function mealsRoutes(app: FastifyInstance) {
     }
   );
 
-  app.get("/", async (request, reply) => {
-    return "Hello World - Meals Routes";
-  });
+  app.get(
+    "/",
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const { sessionId } = request.cookies;
+
+      const user = await knex("tb_users")
+        .select("*")
+        .where("session_Id", sessionId)
+        .first();
+      if (!user) {
+        return reply.status(401).send({
+          error: "Unauthorized",
+        });
+      }
+      const meals = await knex("tb_meals").where("userId", user.id).select("*");
+
+      return { meals };
+    }
+  );
 }
