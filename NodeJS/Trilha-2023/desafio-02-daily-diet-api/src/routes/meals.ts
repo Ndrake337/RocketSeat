@@ -67,4 +67,66 @@ export async function mealsRoutes(app: FastifyInstance) {
       return { meals };
     }
   );
+
+  app.get(
+    "/:id",
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const paramsScheema = z.object({
+        id: z.string().uuid(),
+      });
+
+      const { id } = paramsScheema.parse(request.params);
+      const { sessionId } = request.cookies;
+
+      const user = await knex("tb_users")
+        .select("*")
+        .where("session_Id", sessionId)
+        .first();
+
+      if (!user) {
+        return reply.status(401).send({
+          error: "Unauthorized",
+        });
+      }
+
+      const meal = await knex("tb_meals")
+        .where("userId", user.id)
+        .andWhere("id", id)
+        .select("*")
+        .first();
+
+      return { meal };
+    }
+  );
+
+  app.delete(
+    "/:id",
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const paramsScheema = z.object({
+        id: z.string().uuid(),
+      });
+
+      const { id } = paramsScheema.parse(request.params);
+
+      const { sessionId } = request.cookies;
+
+      const user = await knex("tb_users")
+        .select("*")
+        .where("session_Id", sessionId)
+        .first();
+
+      if (!user) {
+        return reply.status(401).send({
+          error: "Unauthorized",
+        });
+      }
+
+      await knex("tb_meals")
+        .where("id", id)
+        .andWhere("userId", user.id)
+        .delete();
+    }
+  );
 }
